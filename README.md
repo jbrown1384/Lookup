@@ -1,7 +1,7 @@
 <p align="center">Customer LookUp App</p>
 
 <p align="center">
-    <a target="_blank" href="http://52.14.232.222/" alt="Build Status"><strong>Working Instance</strong></a>
+    <a target="_blank" href="http://52.14.232.222/" alt="Build Status"><strong>Working Instance Link</strong></a>
 </p>
 
 ## Stack
@@ -77,7 +77,7 @@ server {
 ### Install Laravel
 - cd /var/www/html
 - sudo apt install git -y
-- sudo git clone https://github.com/jbrown1384/LockedOut.git
+- sudo git clone https://github.com/jbrown1384/Lookup.git
 - cd Lookup/
 - sudo chown -R www-data:www-data /var/www/html/Lookup/
 - sudo chmod -R 755 /var/www/html/Lookup/
