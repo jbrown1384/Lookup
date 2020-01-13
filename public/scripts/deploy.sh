@@ -26,7 +26,7 @@ sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
 sudo /sbin/mkswap /var/swap.1
 sudo /sbin/swapon /var/swap.1
 sudo composer require laravel/ui
-sudo php artisan ui vue --auth
+# sudo php artisan ui vue --auth
 
 echo "Generating App Key"
 sudo php artisan key:generate
