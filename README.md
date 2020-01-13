@@ -38,8 +38,11 @@
 	- sudo mysql
 	- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 	- FLUSH PRIVILEGES;
-	- exit
 
+### Install Default DB
+    - CREATE DATABASE LookupApp;
+    - exit
+    
 ### Install PHP
 - sudo apt install software-properties-common -y
 - sudo add-apt-repository ppa:ondrej/php -y
