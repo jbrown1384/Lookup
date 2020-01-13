@@ -7,6 +7,22 @@ use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('lookup.index');
+    }
+
+    /**
+     * Validates Customer object and retrieves customer data
+     *
+     * @param Customer $customer
+     * @return Response
+     */
     public function show(Customer $customer)
     {
         $customerDetails = [
