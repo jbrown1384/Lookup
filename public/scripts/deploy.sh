@@ -21,12 +21,22 @@ sudo apt-get install npm
 echo "Installing all NPM packages"
 sudo npm install --global cross-env
 
+echo "Install Auth"
+sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+sudo /sbin/mkswap /var/swap.1
+sudo /sbin/swapon /var/swap.1
+sudo composer require laravel/ui
+sudo php artisan ui vue --auth
+
+echo "Generating App Key"
+sudo php artisan key:generate
+
 echo "Running migrations"
 sudo php artisan migrate
 
 echo "Install Faker Data"
 sudo php artisan tinker
-factory(App\Address::class, 30)->create();
-factory(App\Customer::class, 20)->create();
+# factory(App\Address::class, 30)->create();
+# factory(App\Customer::class, 20)->create();
 
 echo "Deployment script complete"
