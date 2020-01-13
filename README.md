@@ -91,11 +91,17 @@ server {
 
 ##  Data Import
 - there are currently two options for importanting the test data for the application
+
 ### SQL Data File
-    - The sql datafile is located in the public/data folder as a zip file. This contains all of the sql needed to create the schema as well as the test data to populate the tables
+<p>The sql datafile is located in the public/data folder as a zip file. This contains all of the sql needed to create the schema as well as the test data to populate the tables</p>
+
 ### Autogenerating Random Data
-    - The application utilizes Faker for dynamically generating fake customer data and all many-to-many relationships.
-    - The deploy script will load all dependancies, as well as initialize faker. During the executiion of the script a prompt will display as "Install Faker Data" and wait for a reply. You can type exit to skip the autogeneration of data or type the commands in the order below to execute: 
-        - actory(App\Address::class, 30)->create();
-        - factory(App\Customer::class, 20)->create();
-        - type exit to leave prompt. Deploy script will resume execution. 
+<p>The application utilizes Faker for dynamically generating fake customer data and all many-to-many relationships.</p>
+<p>The deploy script will load all dependancies, as well as initialize faker. During the execution of the script a prompt will display as "Install Faker Data" and wait for a reply. You can type exit to skip the autogeneration of data or type the commands in the order below to execute:</p>
+
+```
+factory(App\Address::class, 30)->create();
+factory(App\Customer::class, 20)->create();
+exit
+```
+
