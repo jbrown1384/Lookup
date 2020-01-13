@@ -1,8 +1,11 @@
 <p align="center">Customer LookUp App</p>
 
 <p align="center">
-    <a target="_blank" href="http://52.14.232.222/" alt="Build Status"><strong>Working Instance Link</strong></a>
+    <a target="_blank" href="http://52.14.232.222/" alt="Lookup App"><strong>Working Instance Link</strong></a>
 </p>
+
+## Application
+<p>The Lookup Application takes a customer ID and shows all connected data that is associated to that customer. The data that is retrieved will contain basic customer details, customer roles (many-to-many), and customer addresses (many-to-many). A working instance of the appication can be found <a target="_blank" href="http://52.14.232.222/" alt="Lookup App"><strong>here</strong></a>.</p>
 
 ## Stack
 
@@ -16,26 +19,22 @@
 - node v8.10.0
     - npm v3.5.2
 - git v2.17.1
+- Other: 
+    - JQuery, SASS, Blade templating, Bootstrap 
 
-
-## Deployment
-- Checkout this repo into the instance root directory
-- composer and nodejs/npm can be installed individually or you can run the deploy script which will auto install and create the dependencies 
-    - To run the deploy script: sudo bash ./public/scripts/deploy.sh 
-    - this will install and run composer and npm
-
-## Quick Deployment commands for setting up full environment
+## Deployment for full environment
 ### Install Nginx
-- sudo apt update
-- sudo apt install nginx -y
+- sudo su
+- apt update
+- apt install nginx -y
 
 ### Install MySql Server
-- sudo apt install mysql-server -y
-- sudo mysql_secure_installation
+- apt install mysql-server -y
+- mysql_secure_installation
 	- answer prompts
 
 ### Alter root user permissions
-	- sudo mysql
+	- mysql
 	- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 	- FLUSH PRIVILEGES;
 
@@ -44,14 +43,13 @@
     - exit
     
 ### Install PHP
-- sudo apt install software-properties-common -y
-- sudo add-apt-repository ppa:ondrej/php -y
-- sudo apt update
-- sudo apt install php7.4-fpm php7.4-mysql php7.4-common php7.4-mysql php7.4-xml php7.4-xmlrpc php7.4-curl php7.4-gd php7.4-imagick php7.4-cli php7.4-dev php7.4-imap php7.4-mbstring php7.4-opcache php7.4-soap php7.4-zip unzip -y
-- sudo nano /etc/php/7.4/fpm/php.ini
+- apt install software-properties-common -y
+- add-apt-repository ppa:ondrej/php -y
+- apt update
+- apt install php7.4-fpm php7.4-mysql php7.4-common php7.4-mysql php7.4-xml php7.4-xmlrpc php7.4-curl php7.4-gd php7.4-imagick php7.4-cli php7.4-dev php7.4-imap php7.4-mbstring php7.4-opcache php7.4-soap php7.4-zip unzip -y
 
 ### Nginx Config
-- sudo nano /etc/nginx/sites-available/Lookup
+- nano /etc/nginx/sites-available/Lookup
 
 ### Enter this configuration into the Lookup file, remember to update your public IP into the server_name field
 ```
@@ -74,17 +72,30 @@ server {
 }
 ```
 
-- sudo ln -s /etc/nginx/sites-available/Lookup /etc/nginx/sites-enabled/
-- sudo service nginx restart
+- ln -s /etc/nginx/sites-available/Lookup /etc/nginx/sites-enabled/
+- service nginx restart
 
 ### Install Laravel
 - cd /var/www/html
-- sudo apt install git -y
-- sudo git clone https://github.com/jbrown1384/Lookup.git
+- apt install git -y
+- git clone https://github.com/jbrown1384/Lookup.git
 - cd Lookup/
-- sudo chown -R www-data:www-data /var/www/html/Lookup/
-- sudo chmod -R 755 /var/www/html/Lookup/
-- sudo cp .env.example .env
-- sudo bash ./public/scripts/deploy.sh
+- chown -R www-data:www-data /var/www/html/Lookup/
+- chmod -R 755 /var/www/html/Lookup/
+- cp .env.example .env
+- bash ./public/scripts/deploy.sh
+    - Script will hault and wait for instruction during the "Install Faker Data" section. You can choose to install random generated customer data or import the schema and data with the supplied zipped sql file in public/data. To install manually through the data file, type exit and the deploy script will continue executing. To implement the faker generated customer data, type in the commands below in this order: 
+    - factory(App\Address::class, 30)->create();
+    - factory(App\Customer::class, 20)->create();
+    - type exit to leave prompt. Deploy script will resume execution.
 
-## Application
+##  Data Import
+- there are currently two options for importanting the test data for the application
+### SQL Data File
+    - The sql datafile is located in the public/data folder as a zip file. This contains all of the sql needed to create the schema as well as the test data to populate the tables
+### Autogenerating Random Data
+    - The application utilizes Faker for dynamically generating fake customer data and all many-to-many relationships.
+    - The deploy script will load all dependancies, as well as initialize faker. During the executiion of the script a prompt will display as "Install Faker Data" and wait for a reply. You can type exit to skip the autogeneration of data or type the commands in the order below to execute: 
+        - actory(App\Address::class, 30)->create();
+        - factory(App\Customer::class, 20)->create();
+        - type exit to leave prompt. Deploy script will resume execution. 
