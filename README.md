@@ -1,11 +1,7 @@
-<p align="center">Customer LookUp App</p>
-
-<p align="center">
-    <a target="_blank" href="http://52.14.232.222/" alt="Lookup App"><strong>Working Instance Link</strong></a>
-</p>
+<p align="center">Customer LookUp Coding Challenge</p>
 
 ## Application
-<p>The Lookup Application takes a customer ID and shows all connected data that is associated to that customer. The data that is retrieved will contain basic customer details, customer roles (many-to-many), and customer addresses (many-to-many). A working instance of the appication can be found <a target="_blank" href="http://52.14.232.222/" alt="Lookup App"><strong>here</strong></a>.</p>
+<p>The Lookup Application takes a customer ID and shows all connected data that is associated to that customer. The data that is retrieved will contain basic customer details, customer roles (many-to-many), and customer addresses (many-to-many). A working instance of the appication has been taken down. </p>
 
 ## Stack
 
